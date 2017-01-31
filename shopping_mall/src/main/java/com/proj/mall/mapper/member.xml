@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.proj.mall.Dao.Dao">
+	<insert id="insertMember">
+	insert into member(memberid,email,password,name,address,phone) values(member_seq.nextval,#{param1},#{param2},#{param3},#{param4},#{param5}) 
+	</insert>
+	
+	<select id="selectLogin" resultType="com.proj.mall.Dto.Member">
+	select * from member where email=#{param1}
+	</select>
+	
+	<select id="selectItem" resultType="com.proj.mall.Dto.Item">
+	select * from item where type = #{param1} and id = #{param2}
+	</select>
+	
+	
+
+</mapper>
