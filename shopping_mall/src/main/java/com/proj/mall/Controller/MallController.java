@@ -1,6 +1,5 @@
 package com.proj.mall.Controller;
 
-import java.util.ListIterator;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.proj.mall.Dao.Dao;
-import com.proj.mall.Dto.Item;
 import com.proj.mall.Dto.Member;
 import com.proj.mall.command.Cart;
 import com.proj.mall.command.PurchaseCmd;
@@ -22,6 +20,7 @@ import com.proj.mall.service.Mservice;
 import com.proj.mall.service.Service_cart;
 import com.proj.mall.service.Service_item;
 import com.proj.mall.service.Service_login;
+import com.proj.mall.service.Service_mypage;
 import com.proj.mall.service.Service_purchase;
 import com.proj.mall.service.Service_purchaseCart;
 import com.proj.mall.util.Constant;
@@ -59,9 +58,14 @@ public class MallController {
 	public String resistration(HttpServletRequest req, Model model){
 		return "/view/resistration";
 	}
-	@RequestMapping("test")
-	public String test(HttpServletRequest req, Model model){
-		return "test";
+	@RequestMapping("Mypage")
+	public String mypage(HttpServletRequest req,Model model)
+	{
+		model.addAttribute("request",req);
+		service=new Service_mypage();
+		service.execute(model);
+		//return "redirect:main";
+		return "/view/mypage";
 	}
 	@RequestMapping("logout")
 	public String logout(HttpServletRequest req, Model model){

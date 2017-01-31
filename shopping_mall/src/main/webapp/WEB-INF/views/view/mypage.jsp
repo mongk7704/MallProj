@@ -1,5 +1,9 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@page import="com.proj.mall.command.Cart" %>
+<%@page import="com.proj.mall.Dto.Member" %>
+<%@page import="java.util.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
@@ -62,40 +66,70 @@
             width: 1200px;
             margin:0 auto;
         }
+        .pagetitle{
+        height:60px;
+        margin:0;
+        padding:0 0 0 9px;
+        text-align:center;
+        border: 1px solid #d7d5d5;
+        background-color:#f6f6f6;
+        }
+        .pagetitle h3{
+       line-height: 60px;
+        font-size: 25px;
+        margin:0;
+        font-weight: bold;}
+         #boardtable td{
+        vertical-align: middle;
+        }
+         td{
+        text-align: center;
+        
+        }
+        .thumb{
+        width:120px;
+        }
+        td img{
+        width:100px;
+        height:auto;}
+        
     </style>
 </head>
 
+<%
+Member login=(Member)session.getAttribute("login");	
+ArrayList<Map<Integer,Object>> itemlist=(ArrayList<Map<Integer,Object>>)request.getAttribute("itemlist");
+%>
 <body>
-    <%@ include file="fix_top.jsp"%>
-    <div class="main_banner" style="width:1200px; margin:70px auto 0; z-index:99;">
-        <div class="jumbotron">
-            <div class="container text-center"> <img src="image/01.jpg" alt="01" style="max-width:100% margin:0; padding:0; overflow:hidden;height:650; position:relative; auto"> </div>
-        </div>
-        <div class="container-fluid text-center">
-            <div class="row">
-                <div class="col-md-3">
-                    <img src="image/item1.jpg" alt="item1" width="100%"><p>item1</p> </div>
-                <div class="col-md-3">
-                    <img src="image/item2.jpg" alt="item2" width="100%"><p>item2</p> </div>
-                <div class="col-md-3">
-                     <img src="image/item3.jpg" alt="item3" width="100%"><p>item3</p> </div>
-                <div class="col-md-3">
-                     <img src="image/item4.jpg" alt="item4" width="100%"><p>item4</p> </div>
-            </div>
-            <div class="row">
-                <div class="col-md-3">
-                    <img src="image/item5.jpg" alt="item5" width="100%"><p>item5</p> </div>
-                <div class="col-md-3">
-                    <img src="image/item6.png" alt="item6" width="100%"> <p>item1</p></div>
-                <div class="col-md-3">
-                     <img src="image/item7.jpg" alt="item7" width="100%"> <p>item1</p></div>
-                <div class="col-md-3">
-                     <img src="image/item9.png" alt="item9" width="100%"><p>item1</p> </div>
-            </div>
-        </div>
-    </div>
-    <br>
-    <br>
-    
+<%@ include file="fix_top.jsp"%>
+	<div class="container">
+		<div class="contents">
+			<div class="pagetitle" style="margin-bottom: 30px;">
+				<h3>마이 페이지</h3>
+			</div>
+			<div class="pagetitle" >
+				<h3>주문내역</h3>
+			</div>
+			<div class="cartlist">
+				<table class="table table-striped table-bordered" id="boardtable">
+				<tr>
+				<td>주문 번호</td><td>이미지</td><td>상품정보</td><td>판매가</td><td>주문 날짜</td><td>배송비</td><td>합계</td></tr>
+				<c:forEach var="theitem" varStatus="status" items="${requestScope.myItem }">
+				<tr>
+				<td class="order"><strong>${theitem.orderNumber}</strong></td>
+				<td class="thumb"><img alt="item" src="${theitem.item.path}"></td>
+				<td class="detail"><strong>${theitem.item.itemName }</strong><br> <div style="margin:9px 0 0">SIZE  ${item.itemSize }</div></td>
+				<td class="price"><strong>${theitem.item.price}원</strong></td>
+				<td class="amount"><strong>${theitem.orderDate}</strong></td>
+				<td class="transfer"><strong>2500원</strong></td>
+				<td class="totalfee"><strong>${theitem.item.price+2500}원</strong></td>
+				</tr>
+				</c:forEach>	
+			</table>
+			</div>
+		
+		</div>
+	
+	</div>
 </body>
 </html>

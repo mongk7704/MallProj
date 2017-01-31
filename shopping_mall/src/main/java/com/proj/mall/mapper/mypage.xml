@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.proj.mall.Dao.Dao">
+	
+	
+	<select id="selectId" resultType="Integer">
+	select memberid from member where address=#{param1}
+	</select>
+	
+	<resultMap type="java.util.HashMap" id="book1">
+		<result javaType="int" column="ordernumber" property="ordernumber"/>
+		<result javaType="java.util.Date" column="orderdate" property="orderdate"/>
+	</resultMap>
+	
+	<resultMap type="java.util.HashMap" id="book2">
+		<result javaType="String" column="itemtype" property="itemtype"/>
+		<result javaType="String" column="itemid" property="itemid"/>
+	</resultMap>
+	
+	<select id="selectOrder" resultMap="book1">
+	select ordernumber,orderdate from orderinfo where purchaserid=#{param1}
+	</select>
+	
+	<select id="selectOrderItem" resultMap="book2">
+	select itemtype,itemid from orderitem where ordernumber=#{param1}
+	</select>
+	
+	
+
+</mapper>

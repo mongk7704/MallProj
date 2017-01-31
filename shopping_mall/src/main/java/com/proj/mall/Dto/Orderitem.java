@@ -1,40 +1,29 @@
 package com.proj.mall.Dto;
 
+import java.util.Date;
+
 public class Orderitem {
-	private int orderItemId;
 	private int orderNumber;
-	private String itemType;
-	private String itemId;
-	private int itemAccount;
-	public int getOrderItemId() {
-		return orderItemId;
-	}
-	public void setOrderItemId(int orderItemId) {
-		this.orderItemId = orderItemId;
-	}
+	private Date orderDate;
+	private Item item;
 	public int getOrderNumber() {
 		return orderNumber;
 	}
 	public void setOrderNumber(int orderNumber) {
 		this.orderNumber = orderNumber;
 	}
-	public String getItemType() {
-		return itemType;
+	public Date getOrderDate() {
+		return orderDate;
 	}
-	public void setItemType(String itemType) {
-		this.itemType = itemType;
+	public void setOrderDate(Date orderDate) {
+		this.orderDate = orderDate;
 	}
-	public String getItemId() {
-		return itemId;
+	public Item getItem() {
+		return item;
 	}
-	public void setItemId(String itemId) {
-		this.itemId = itemId;
+	public void setItem(Item item) {
+		this.item = item;
 	}
-	public int getItemAccount() {
-		return itemAccount;
-	}
-	public void setItemAccount(int itemAccount) {
-		this.itemAccount = itemAccount;
-	}
+	
 	
 }

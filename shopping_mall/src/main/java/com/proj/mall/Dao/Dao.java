@@ -1,5 +1,6 @@
 package com.proj.mall.Dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.proj.mall.Dto.Item;
@@ -14,5 +15,7 @@ public interface Dao {
 	public void insertBank(String btname,String btbank,String btaccountnum,int totalmoney,int seq);
 	public Member selectLogin(String email);
 	public Item selectItem(String type,String id);
-	
+	public Integer selectId(String address);
+	public ArrayList<HashMap<String,Object>> selectOrder(int pid);
+	public ArrayList<HashMap<String,Object>> selectOrderItem(int onum);
 }
