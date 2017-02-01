@@ -18,4 +18,5 @@ public interface Dao {
 	public Integer selectId(String address);
 	public ArrayList<HashMap<String,Object>> selectOrder(int pid);
 	public ArrayList<HashMap<String,Object>> selectOrderItem(int onum);
+	public void deleteOrderItem(int id);
 }

@@ -3,9 +3,16 @@ package com.proj.mall.Dto;
 import java.util.Date;
 
 public class Orderitem {
+	private int orderItemId;
 	private int orderNumber;
 	private Date orderDate;
 	private Item item;
+	public int getOrderItemId() {
+		return orderItemId;
+	}
+	public void setOrderItemId(int orderItemId) {
+		this.orderItemId = orderItemId;
+	}
 	public int getOrderNumber() {
 		return orderNumber;
 	}

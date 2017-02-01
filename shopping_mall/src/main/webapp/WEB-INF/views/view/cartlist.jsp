@@ -139,7 +139,7 @@
 <%
 HttpSession sess=request.getSession();
 Cart items=(Cart)session.getAttribute("cart");
-
+Object s=session.getAttribute("login");
 
 
 %>
@@ -147,8 +147,9 @@ Cart items=(Cart)session.getAttribute("cart");
 
 
 <div class="contents">
+<input type="hidden" value="${sessionScope.login}" id="log" >
 	<div class="container">
-	<form name="frmSubmit" method="post" action="cartorder">
+	<form name="frmSubmit" method="post" >
 		<div class="cart">
 			<div class="carttitle">
 				<h3>장바구니 내역</h3>
@@ -163,7 +164,7 @@ Cart items=(Cart)session.getAttribute("cart");
 				<td>선택</td><td>이미지</td><td>상품정보</td><td>판매가</td><td>수량</td><td>배송비</td><td>합계</td></tr>
 				<c:forEach var="item" varStatus="status" items="${sessionScope.cart.itemlist }">
 				<tr>
-				<td class="choose"><input class="ck" type="checkbox" name="cartCk" value="${status.index}"></td>
+				<td class="choose"><input class="ck" type="checkbox" name="cartCk" value="${status.index}" checked="checked"></td>
 				<td class="thumb"><img alt="item" src="${item.path}"></td>
 				<td class="detail"><strong>${item.itemName }</strong><br> <div style="margin:9px 0 0">SIZE  ${item.itemSize }</div></td>
 				<td class="price"><strong>${item.price}원</strong></td>
@@ -177,7 +178,7 @@ Cart items=(Cart)session.getAttribute("cart");
 			<div class="cartoption" style="margin-bottom:15px;" >
 			
 			<button id="bt1"  class="btn btn-info" >선택 상품 삭제</button>
-			<button id="bt2"  class="btn btn-success" >전체 상품 삭제</button>	
+			<button id="bt2"  class="btn btn-info" >전체 상품 삭제</button>	
 			
 				
 			</div>
@@ -204,32 +205,45 @@ Cart items=(Cart)session.getAttribute("cart");
 <script type="text/javascript">
 	var bt=$('.bt');
 	var frm=document.frmSubmit;
+	var login=$('#log').val();
 	$('#bt1').click(
 			function(){
 				frm.action="cartoption?option=select";
 				frm.submit();
 			}
-			)
+			);
 			
 	$('#bt2').click(
 			function(){
 				frm.action="cartoption?option=all";
 				frm.submit();
 			}
-			)
+			);
 	
 	$('#bt3').click(
 			function(){
-				frm.action="cartorder?method=cart&total=false";
-				frm.submit();
+					if(login=="")
+						alert('로그인필요합니다');
+					else{
+						frm.action="cartorder?method=cart&total=true";
+						frm.submit();
+					}
+					
+		
 			}
 			)
 	$('#bt4').click(
 			function(){
-				frm.action="cartorder?method=cart&total=true";
-				frm.submit();
+				if(login=="")
+					alert('로그인필요합니다');
+				else{
+					frm.action="cartorder?method=cart&total=true";
+					frm.submit();
+				}
+					
+		
 			}
-			)
+			);
 </script>
 </body>
 </html>

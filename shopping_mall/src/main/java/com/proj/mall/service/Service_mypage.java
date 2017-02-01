@@ -50,8 +50,10 @@ public class Service_mypage implements Mservice {
 			for(int j=0; j<itemList.size();j++){
 				Orderitem orderitem=new Orderitem();
 				Item item=dao.selectItem((String)itemList.get(j).get("itemtype"), (String)itemList.get(j).get("itemid"));
+				orderitem.setOrderItemId((Integer) itemList.get(j).get("orderitemid"));
 				orderitem.setOrderDate((Date) maplist.get(i).get("orderdate"));
 				orderitem.setOrderNumber((Integer) maplist.get(i).get("ordernumber"));
+				
 				orderitem.setItem(item);
 				myItem.add(orderitem);
 				

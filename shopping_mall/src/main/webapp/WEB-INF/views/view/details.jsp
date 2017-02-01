@@ -66,6 +66,7 @@
         .contents{
         margin-top:70px;}
         img{
+        margin-left:150px;
         max-width:100%;}
         .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
         padding:20px;}
@@ -82,11 +83,12 @@ Object s=session.getAttribute("login");
 %>
 
 <%@ include file="fix_top.jsp"%>
+<input type="hidden" value="${sessionScope.login}" id="log" >
     <div class="contents">
     	<div class="container">
     	<div class="row">
     	<div class="col-md-8">
-    	<img alt="item" src="<%=path %>">
+    	<img alt="item" src="<%=item.getPath() %>">
     	</div>
     	<div class="col-md-4">
     	<div class="info-top">
@@ -120,10 +122,21 @@ Object s=session.getAttribute("login");
     	<div >
     	
     	<a href="<%=purchase %>" id="purchase_btn" class="btn btn-success" style="width:100%" >구매하기</a>
-    	<script type="text/javascript">
+    	
+    	<a href="<%=cart %>" id="cart_btn" class="btn btn-info" style="width:100%;margin-top:10px;">장바구니</a>
+    	
+    	</div>
+    	
+    	
+    	
+    	</div>
+    	</div>
+    	</div>
+    </div>
+    <script type="text/javascript">
     		$('#purchase_btn').on('click',function (event){
-    			var login=<%=s %>;
-    			if (login==null)
+    			var login=$('#log').val();
+    			if (login=="")
     				{
     				console.log("login 필요");
     				alert("login이 필요합니다");
@@ -135,18 +148,14 @@ Object s=session.getAttribute("login");
     				
     			}
     				
-    			})
+    			});
+    			$('#cart_btn').on('click',function(event){
+    				console.log("장바구니");
+    				alert("해당 상품을 장바구니에 담았습니다.");
+    				return true;
+    				
+    			});
 			
 		</script>
-    	<a href="<%=cart %>" class="btn btn-info" style="width:100%;margin-top:10px;">장바구니</a>
-    	
-    	</div>
-    	
-    	
-    	
-    	</div>
-    	</div>
-    	</div>
-    </div>
 </body>
 </html>

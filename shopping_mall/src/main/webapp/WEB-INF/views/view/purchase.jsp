@@ -161,7 +161,7 @@ purchase="purchase?type="+item.getType()+"&id="+item.getId();
 				<c:if test="${param.method eq 'normal'}" >
 				<tr>
 				<td class="choose"><input type="checkbox" name="cartCk" value="${status.index}"></td>				
-				<td class="thumb"><img alt="item" src="<%=path %>"></td>
+				<td class="thumb"><img alt="item" src="${item.path}"></td>
 				<td class="detail"><strong>${item.itemName }</strong><br> <div style="margin:9px 0 0">SIZE  ${item.itemSize }</div></td>
 				<td class="price"><strong>${item.price}원</strong></td>
 				<td class="amount"><strong>1</strong></td>

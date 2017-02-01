@@ -16,6 +16,7 @@
 	</resultMap>
 	
 	<resultMap type="java.util.HashMap" id="book2">
+		<result javaType="int" column="orderitemid" property="orderitemid"/>
 		<result javaType="String" column="itemtype" property="itemtype"/>
 		<result javaType="String" column="itemid" property="itemid"/>
 	</resultMap>
@@ -25,9 +26,12 @@
 	</select>
 	
 	<select id="selectOrderItem" resultMap="book2">
-	select itemtype,itemid from orderitem where ordernumber=#{param1}
+	select orderitemid,itemtype,itemid from orderitem where ordernumber=#{param1}
 	</select>
 	
+	<delete id="deleteOrderItem">
+	delete from orderitem where orderitemid=#{param1}
+	</delete>
 	
 
 </mapper>

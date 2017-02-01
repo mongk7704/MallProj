@@ -113,7 +113,7 @@ ArrayList<Map<Integer,Object>> itemlist=(ArrayList<Map<Integer,Object>>)request.
 			<div class="cartlist">
 				<table class="table table-striped table-bordered" id="boardtable">
 				<tr>
-				<td>주문 번호</td><td>이미지</td><td>상품정보</td><td>판매가</td><td>주문 날짜</td><td>배송비</td><td>합계</td></tr>
+				<td>주문 번호</td><td>이미지</td><td>상품정보</td><td>판매가</td><td>주문 날짜</td><td>배송비</td><td>합계</td><td>주문취소</td></tr>
 				<c:forEach var="theitem" varStatus="status" items="${requestScope.myItem }">
 				<tr>
 				<td class="order"><strong>${theitem.orderNumber}</strong></td>
@@ -123,6 +123,8 @@ ArrayList<Map<Integer,Object>> itemlist=(ArrayList<Map<Integer,Object>>)request.
 				<td class="amount"><strong>${theitem.orderDate}</strong></td>
 				<td class="transfer"><strong>2500원</strong></td>
 				<td class="totalfee"><strong>${theitem.item.price+2500}원</strong></td>
+				
+				<td><a href="ordercancel?ordernum=${theitem.orderNumber }&id=${theitem.orderItemId}">주문취소</a></td>
 				</tr>
 				</c:forEach>	
 			</table>

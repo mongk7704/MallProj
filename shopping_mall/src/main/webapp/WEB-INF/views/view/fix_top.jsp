@@ -4,7 +4,7 @@
         <div class="jumbotron" style="margin-bottom:0; background-color:white;">
             <div class="container text-center">
                 <h1><a href="main" style="color:black">XXX</a></h1>
-                <p>Mission, Vission & Values</p>
+                <p>Mission, Vision & Values</p>
             </div>
         </div>
         <nav class="navbar navbar" style="margin-bottom:0;">
@@ -23,14 +23,14 @@
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="cartlist"><span><img src="image/icons/cart-icon.png"></span>Cart</a></li>
                         <li><a href="resistration"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                        <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        <li><a class="log" href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                     </ul>
 					</c:if>
 					<c:if test="${sessionScope.login!=null}">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="cartlist"><span><img src="image/icons/cart-icon.png"></span>Cart</a></li>
                         <li><a href="Mypage"><span class="glyphicon glyphicon-user"></span> Mypage</a></li>
-                        <li><a href="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                        <li><a class="log" href="logout" ><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                     </ul>
                     </c:if>
                 </div>

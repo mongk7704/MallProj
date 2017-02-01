@@ -139,6 +139,7 @@ public class MallController {
 		HttpSession sess=req.getSession();
 		int j=0,k=0;
 		Cart cart=(Cart)sess.getAttribute("cart");
+		Cart cart2=new Cart();
 		int size=cart.size();
 		String[] cartCk=req.getParameterValues("cartCk");
 		
@@ -146,18 +147,17 @@ public class MallController {
 			return "/view/purchase";
 		if(cart.size()==cartCk.length)
 			return "/view/purchase";
-		for(int i=0;i<size;i++)
+		for(int i=0;i<=size;i++)
 		{	
 			if(j>=cartCk.length)
 				break;
-			if(i!=Integer.parseInt(cartCk[j])){
-				cart.removeByIndex(i-k);
-				k++;
-			}
-			else
+			if(i==Integer.parseInt(cartCk[j])){
+				cart2.insert(cart.getByIndex(i));
 				j++;
+			}
+			
 		}
-		sess.setAttribute("cart", cart);
+		sess.setAttribute("cart", cart2);
 		return "/view/purchase";
 	}
 	
@@ -168,10 +168,11 @@ public class MallController {
 		model.addAttribute("session",sess);
 		model.addAttribute("request",req);
 		service.execute(model);
+		req.setAttribute("type", req.getParameter("type"));
+		req.setAttribute("id", req.getParameter("id"));
 		
-		
-		
-		return "redirect:main";
+		return "/view/details";
+		//return "redirect:main";
 		//return "/view/cart";
 	}
 	@RequestMapping("cartlist")
@@ -179,7 +180,13 @@ public class MallController {
 		
 		return "/view/cartlist";
 	} 
-	
+	@RequestMapping("ordercancel")
+	public String ordercancel( HttpServletRequest req,Model model){
+		
+		Dao dao=Constant.sess.getMapper(Dao.class);
+		dao.deleteOrderItem(Integer.parseInt(req.getParameter("id")));
+		return "redirect:Mypage";
+	} 
 	@RequestMapping("cartoption")
 	public String cartoption( HttpServletRequest req,Model model){
 		
@@ -189,8 +196,8 @@ public class MallController {
 		String[] cartCk=req.getParameterValues("cartCk");
 		int j=0;
 		int size=cart.size();
-		System.out.println("cart size:"+cart.size());
-		System.out.println("ck len:"+cartCk.length);
+		//System.out.println("cart size:"+cart.size());
+		//ystem.out.println("ck len:"+cartCk.length);
 		if(req.getParameter("option").equals("select")){
 			for(int i=0;i<size;i++){
 				if(j>=cartCk.length)
@@ -199,12 +206,8 @@ public class MallController {
 					{
 					cart.removeByIndex(i-j);
 					j++;
-					}
-				
-				
-			}
-				
-			
+					}		
+			}	
 		}
 		else{
 			cart.clear();
