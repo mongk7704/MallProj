@@ -225,7 +225,7 @@ Object s=session.getAttribute("login");
 					if(login=="")
 						alert('로그인필요합니다');
 					else{
-						frm.action="cartorder?method=cart&total=true";
+						frm.action="cartorder?method=cart&total=false";
 						frm.submit();
 					}
 					
