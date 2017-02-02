@@ -8,29 +8,29 @@
 	
 	<insert id="insertPurchaser" parameterType="java.util.HashMap">
 	insert into purchaser(purchaserid,purchasername,purchaseremail,purchaseraddress,purchaserphone,purchaseseq) 
-	values(#{purchaser.purchaserId},#{purchaser.purchaserName},#{purchaser.purchaserEmail},#{purchaser.purchaserAddress},#{purchaser.purchaserPhone},purchase_seq.nextval) 
+	values(#{purchaser.purchaserId},#{purchaser.purchaserName},#{purchaser.purchaserEmail},#{purchaser.purchaserAddress},#{purchaser.purchaserPhone},mall_seq.nextval) 
 	<selectKey keyProperty="purchaserSeq" resultType="int" order="AFTER">
-		select purchase_seq.currval from dual
+		select mall_seq.currval from dual
 		</selectKey>
 	</insert>
 	
 	<insert id="insertOrder" parameterType="java.util.HashMap">
-	insert into orderinfo(ordernumber,purchaserid,purchaserseq,totalfee) values(ordernum_seq.nextval,#{order.purchaserId},#{order.purchaserSeq},#{order.totalfee})
+	insert into orderinfo(ordernumber,purchaserid,purchaserseq,totalfee) values(mall_seq.nextval,#{order.purchaserId},#{order.purchaserSeq},#{order.totalfee})
 		<selectKey keyProperty="orderNumber" resultType="int" order="AFTER">
-		select ordernum_seq.currval from dual
+		select mall_seq.currval from dual
 		</selectKey>
 	</insert>
 	
 	<insert id="insertOrderItem">
-	insert into orderitem(orderitemid,ordernumber,itemtype,itemid,itemaccount) values(orderitem_seq.nextval,#{param1},#{param2},#{param3},#{param4})
+	insert into orderitem(orderitemid,ordernumber,itemtype,itemid,itemaccount) values(mall_seq.nextval,#{param1},#{param2},#{param3},#{param4})
 	</insert>
 	
 	<insert id="insertReciever">
-	insert into reciever(recieverid,recievername,recievermessage,recieveraddress,recieverphone,ordernumber) values(reciever_seq.nextval,#{param1},#{param2},#{param3},#{param4},#{param5}) 
+	insert into reciever(recieverid,recievername,recievermessage,recieveraddress,recieverphone,ordernumber) values(mall_seq.nextval,#{param1},#{param2},#{param3},#{param4},#{param5}) 
 	</insert>
 	
 	<insert id="insertBank">
-	insert into banktransfer(btid,btname,btbank,btaccountnum,totalmoney,ordernumber) values(bt_seq.nextval,#{param1},#{param2},#{param3},#{param4},#{param5}) 
+	insert into banktransfer(btid,btname,btbank,btaccountnum,totalmoney,ordernumber) values(mall_seq.nextval,#{param1},#{param2},#{param3},#{param4},#{param5}) 
 	</insert>
 	
 	
